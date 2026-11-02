@@ -304,6 +304,20 @@ I have Copilot Chat pointed to my LLM server, but that changes based on the LLm 
 
 ## 5. LLM Tools
 
+### GUFO - new Runtime for Strix Halo
+
+GUFO is a custom runtime for Strix Halo machines with specifc focus on performance for large models.
+
+I ru Qwnr Flash Next Q4_K_XL from Unsloth with MTP, downloaded via LMS Studio. I don't have a systemd service set up but run it manually with:
+
+```bash
+  MODEL=/home/fedora/.lmstudio/models/unsloth/Qwen3.8-Flash-Next-GGUF/Qwen3.8-Flash-Next-UD-Q4_K_XL-00001-of-00004.gguf
+  MTP=/home/fedora/.lmstudio/models/unsloth/Qwen3.8-Flash-Next-GGUF/mtp-Qwen3.8-Flash-Next-shared-Q8_0.gguf
+  /home/fedora/git/gufo/result/bin/gufo serve llm --model "$MODEL" --reasoning-effort medium --speculative mtp \
+    --mtp-model "$MTP" --context 260000 \
+    --host 0.0.0.0 --port 7777
+```
+
 ### LM Studio - My Main tool
 
 LM Studio may not be cutting edge or the most efficient tool but it i stable and allows connecting from other devioc using a few methods, including it's own Link program. You can connect to aM Studio on a remote system using an Open I like REST API. This allows you otopoint vs code extensions, other coding tools, apps, and more. LM Studio usses GGUF models in most cases and you can host them on a network share. If you are constantly unloading/loading models then local is preferred.
@@ -444,20 +458,6 @@ Easy to set upobut I have not used it mtha much. Developed in partnership with A
     `cd llama.cpp`
     `make hip`
     `./main -m model.gguf --gpu-layers 20`
-
-- AMD Performance Tuning TBD
-
-### NVidia llama.cpp Deployment - Untested
-
-- Build llama.cpp for NVIDIA/cuda:
-
-    ```bash
-    git clone https://github.com/ggerganov/llama.cpp
-    cd llama.cpp
-    make cuda
-    ```
-
-- NVIDIA Performance Tuning TBD
 
 ### OpenHands Open source AI focused development tool
 
